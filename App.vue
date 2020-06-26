@@ -22,17 +22,17 @@ export default {
     };
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       for (let i = 1; i <= 151; i++) {
-        this.getPokemon(i);
+        await this.getPokemon(i);
       }
     },
-    getPokemon(id) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    async getPokemon(id) {
+      await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(res => {
           return res.json();
         })
-        .then(this.setPokemons);
+        .then(this.setPokemons)
     },
     setPokemons(result) {
       this.pokemons = [...this.pokemons, result];
